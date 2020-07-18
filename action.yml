@@ -1,0 +1,17 @@
+name: 'Qywx Bot Action'
+description: '企业微信机器人'
+author: 'zcong1993'
+branding:
+  icon: 'message-square'
+  color: 'blue'
+inputs:
+  key:
+    description: '企业微信 key'
+    required: true
+  body:
+    description: '消息体'
+    required:  true
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

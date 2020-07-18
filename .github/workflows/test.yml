@@ -1,0 +1,72 @@
+name: "build-test"
+on: # rebuild any PRs and main branch changes
+  push:
+
+jobs:
+  test: # make sure the action works on a clean machine without building
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: send text
+      uses: ./
+      with:
+        key: ${{ secrets.KEY }}
+        body: |
+          {
+            "msgtype": "text",
+            "text": {
+                "content": "广州今日天气：29度，大部分多云，降雨概率：60%"
+            }
+          }
+
+    - name: send markdown
+      uses: ./
+      with:
+        key: ${{ secrets.KEY }}
+        body: |
+          {
+            "msgtype": "markdown",
+            "markdown": {
+              "content": "实时新增用户反馈<font color=\"warning\">132例</font>，请相关同事注意。\n> 类型:<font color=\"comment\">用户反馈</font>\n> 普通用户反馈:<font color=\"comment\">117例</font>\n> VIP用户反馈:<font color=\"comment\">15例</font>"
+            }
+          }
+
+    - name: send news
+      uses: ./
+      with:
+        key: ${{ secrets.KEY }}
+        body: |
+          {
+            "msgtype": "news",
+            "news": {
+              "articles" : [
+                  {
+                      "title" : "中秋节礼品领取",
+                      "description" : "今年中秋节公司有豪礼相送",
+                      "url" : "www.qq.com",
+                      "picurl" : "http://res.mail.qq.com/node/ww/wwopenmng/images/independent/doc/test_pic_msg1.png"
+                  }
+                ]
+            }
+          }
+
+    - name: send imageFile
+      uses: ./
+      with:
+        key: ${{ secrets.KEY }}
+        body: |
+          {
+            "msgtype": "imageFile",
+            "filePath": "./static/image.jpg"
+          }
+
+    - name: send fileByName
+      uses: ./
+      with:
+        key: ${{ secrets.KEY }}
+        body: |
+          {
+            "msgtype": "fileByName",
+            "filePath": "./README.md",
+            "filename": "README.md"
+          }

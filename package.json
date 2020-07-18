@@ -68,6 +68,6 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.4",
-    "qiyeweixin-bot": "^0.1.3"
+    "qiyeweixin-bot": "^0.1.4"
   }
 }
